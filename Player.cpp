@@ -2,18 +2,23 @@
 
 Player::Player(sf::RenderWindow* window) : idleAnimation(&texture, sf::Vector2u(23, 4), 0.1f, 0, 0), walkAnimation (&texture, sf::Vector2u(23, 4), 0.1f, 1, 4)
 {
-    this->shape = sf::RectangleShape(sf::Vector2f(50.0f, 50.0f));
+    this->shape = sf::RectangleShape(sf::Vector2f(64.0f, 64.0f));
     this->texture.loadFromFile("textures/characters.png");
     this->window = window;
-    shape.setPosition(sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2));
-    shape.setSize(sf::Vector2f(64, 64));
-    shape.setOrigin(sf::Vector2f(shape.getSize().x / 2, shape.getSize().y / 2));
+
+    sf::Vector2u textureSize = this->texture.getSize();
+    textureSize.x /= 23;
+    textureSize.y /= 4;
+
     shape.setTexture(&texture);
+    shape.setTextureRect(sf::IntRect(0, 32, textureSize.x, textureSize.y));
+    shape.setOrigin(sf::Vector2f(shape.getSize().x / 2, shape.getSize().y / 2));
+    shape.setPosition(sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2));
 }
 
 Player::~Player()
 {
-    
+
 }
 
 void Player::Update(float deltaTime)
