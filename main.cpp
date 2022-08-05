@@ -1,17 +1,32 @@
+#include <SFML/Graphics.hpp>
 #include <iostream>
-
 #include "Game.h"
+#include "Player.h"
 
 int main()
 {
-    srand(static_cast<unsigned>(time(NULL)));
+    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
+    Player player(&window);
 
-    Game game;
+    float deltaTime = 0.0f;
+    sf::Clock clock;
 
-    while (game.isRunning())
+    while (window.isOpen())
     {
-        game.update();
-        game.render();
+        deltaTime = clock.restart().asSeconds();
+        sf::Event event;    
+
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        player.Update(deltaTime);
+
+        window.clear(sf::Color::Green);
+        player.Draw();
+        window.display();
     }
 
     return 0;
