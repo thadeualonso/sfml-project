@@ -3,13 +3,16 @@
 Game::Game() :
 	mWindow(sf::VideoMode(640, 480), "SFML Application"),
 	mPlayer(),
-	mTextureHolder()
+	mFpsText(),
+	mTextureHolder(),
+	mFontHolder()
 {
-	sf::Vector2f centerOfScreen(mWindow.getSize().x / 2.f, mWindow.getSize().y / 2.f);
+	mWindow.setFramerateLimit(60);
 
 	try
 	{
 		mTextureHolder.load(Textures::Airplane, "content/textures/ship_0010.png");
+		mFontHolder.load(Fonts::MiniSquare, "content/fonts/k_mini_square.ttf");
 	}
 	catch (std::runtime_error& e)
 	{
@@ -17,6 +20,11 @@ Game::Game() :
 		return;
 	}
 
+	mFpsText.setFont(mFontHolder.get(Fonts::MiniSquare));
+	mFpsText.setString("Texto");
+	mFpsText.setScale(0.8f, 0.8f);
+
+	sf::Vector2f centerOfScreen(mWindow.getSize().x / 2.f, mWindow.getSize().y / 2.f);
 	mPlayer.setTexture(mTextureHolder.get(Textures::Airplane));
 	mPlayer.setPosition(centerOfScreen);
 	mPlayer.setScale(2.f, 2.f);
@@ -32,6 +40,7 @@ void Game::run()
 	{
 		processEvents();
 		timeSinceLastUpdate += clock.restart();
+		mFpsText.setString("FPS: " + std::to_string(1.f / timeSinceLastUpdate.asSeconds()) + "\nDeltaTime: " + std::to_string(timeSinceLastUpdate.asSeconds()));
 
 		while (timeSinceLastUpdate > TimePerFrame)
 		{
@@ -106,5 +115,6 @@ void Game::render()
 {
 	mWindow.clear(sf::Color::Cyan);
 	mWindow.draw(mPlayer);
+	mWindow.draw(mFpsText);
 	mWindow.display();
 }

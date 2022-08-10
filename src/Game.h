@@ -12,6 +12,14 @@ enum ID
 };
 }
 
+namespace Fonts
+{
+enum ID
+{
+	MiniSquare
+};
+}
+
 class Game
 {
 public:
@@ -27,7 +35,9 @@ private:
 private:
 	sf::RenderWindow mWindow;
 	sf::Sprite mPlayer;
+	sf::Text mFpsText;
 	ResourceHolder<sf::Texture, Textures::ID> mTextureHolder;
+	ResourceHolder<sf::Font, Fonts::ID> mFontHolder;
 	bool mIsMovingUp = false;
 	bool mIsMovingDown = false;
 	bool mIsMovingRight = false;
