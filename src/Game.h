@@ -1,5 +1,16 @@
 #pragma once
+#include "ResourceHolder.hpp"
 #include "SFML/Graphics.hpp"
+
+namespace Textures
+{
+enum ID
+{
+	Airplane,
+	Landscape,
+	Missile
+};
+}
 
 class Game
 {
@@ -16,6 +27,7 @@ private:
 private:
 	sf::RenderWindow mWindow;
 	sf::Sprite mPlayer;
+	ResourceHolder<sf::Texture, Textures::ID> mTextureHolder;
 	bool mIsMovingUp = false;
 	bool mIsMovingDown = false;
 	bool mIsMovingRight = false;

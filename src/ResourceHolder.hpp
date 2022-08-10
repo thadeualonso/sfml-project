@@ -1,4 +1,5 @@
 #pragma once
+
 #include <cassert>
 #include <map>
 #include <memory>
@@ -10,26 +11,18 @@ class ResourceHolder
 {
 public:
 	void load(Identifier id, const std::string& filename);
+
+	template <typename Parameter>
+	void load(Identifier id, const std::string& filename, const Parameter& secondParam);
+
 	Resource& get(Identifier id);
 	const Resource& get(Identifier id) const;
+
+private:
+	void insertResource(Identifier id, std::unique_ptr<Resource> resource);
 
 private:
 	std::map<Identifier, std::unique_ptr<Resource>> mResourceMap;
 };
 
-template <typename Resource, typename Identifier>
-void ResourceHolder::load(Identifier id, const std::string& filename)
-{
-	std::unique_ptr<Resource> resource(new Resource());
-
-	if (!resource->loadFromFile(filename))
-	{
-		throw std::runtime_error("ResourceHolder::load - Failed to load " + filename);
-	}
-
-	auto inserted = mResourcesMap.insert(std::make_pair(id, std::move(resource)));
-	assert(inserted.second);
-}
-Resource& ResourceHolder::get(Identifier id)
-{
-}
+#include "ResourceHolder.inl"
