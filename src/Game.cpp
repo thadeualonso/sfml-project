@@ -1,20 +1,19 @@
 #include "Game.h"
+#include "TextureHolder.h"
 
 Game::Game() :
 	mWindow(sf::VideoMode(640, 480), "SFML Application"),
-	mTexture(),
 	mPlayer()
 {
-	if (!mTexture.loadFromFile("content/textures/ship_0010.png"))
-	{
-		printf("Error on loading ship texture!");
-	}
-
 	sf::Vector2f centerOfScreen(mWindow.getSize().x / 2.f, mWindow.getSize().y / 2.f);
 
-	mPlayer.setTexture(mTexture);
+	TextureHolder textures;
+	textures.load(Textures::Airplane, "content/textures/ship_0010.png");
+	sf::Texture shipTexture = textures.get(Textures::Airplane);
+
+	mPlayer.setTexture(shipTexture);
+	mPlayer.setOrigin(shipTexture.getSize().x / 2.f, shipTexture.getSize().y / 2.f);
 	mPlayer.setPosition(centerOfScreen);
-	mPlayer.setOrigin(mTexture.getSize().x / 2.f, mTexture.getSize().y / 2.f);
 	mPlayer.setScale(2.f, 2.f);
 }
 
