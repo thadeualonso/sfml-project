@@ -1,24 +1,8 @@
 #pragma once
 #include "ResourceHolder.hpp"
+#include "ResourceIdentifiers.hpp"
 #include "SFML/Graphics.hpp"
-
-namespace Textures
-{
-enum ID
-{
-	Airplane,
-	Landscape,
-	Missile
-};
-}
-
-namespace Fonts
-{
-enum ID
-{
-	MiniSquare
-};
-}
+#include <iostream>
 
 class Game
 {
@@ -36,7 +20,7 @@ private:
 	sf::RenderWindow mWindow;
 	sf::Sprite mPlayer;
 	sf::Text mFpsText;
-	ResourceHolder<sf::Texture, Textures::ID> mTextureHolder;
+	TextureHolder mTextureHolder;
 	ResourceHolder<sf::Font, Fonts::ID> mFontHolder;
 	bool mIsMovingUp = false;
 	bool mIsMovingDown = false;
