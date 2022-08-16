@@ -2,7 +2,7 @@
 #include "ResourceIdentifiers.hpp"
 #include <iostream>
 
-Aircraft::Aircraft(Type type, const TextureHolder& textures) :
+Aircraft::Aircraft(Type type) :
 	mType(type)
 {
 	std::cout << mType << std::endl;
