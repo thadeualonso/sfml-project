@@ -9,11 +9,11 @@ Textures::ID Aircraft::toTextureID(Aircraft::Type type)
 	Textures::ID textureType;
 	switch (type)
 	{
-		case Aircraft::Eagle:
-			textureType = Textures::Eagle;
+		case Aircraft::Player:
+			textureType = Textures::PlayerShip;
 			break;
-		case Aircraft::Raptor:
-			textureType = Textures::Raptor;
+		case Aircraft::Enemy:
+			textureType = Textures::EnemyShip;
 			break;
 		default:
 			break;

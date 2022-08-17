@@ -2,7 +2,7 @@
 
 Game::Game() :
 	mWindow(sf::VideoMode(640, 480), "SFML Application"),
-	mPlayer(Aircraft::Eagle, mTextureHolder),
+	mPlayer(),
 	mFpsText(),
 	mTextureHolder(),
 	mFontHolder()
@@ -12,6 +12,7 @@ Game::Game() :
 	try
 	{
 		mTextureHolder.load(Textures::Airplane, "content/textures/ship_0010.png");
+		mTextureHolder.load(Textures::Landscape, "content/textures/tiles_packed.png");
 		mFontHolder.load(Fonts::MiniSquare, "content/fonts/k_mini_square.ttf");
 	}
 	catch (std::runtime_error& e)
@@ -20,11 +21,13 @@ Game::Game() :
 		return;
 	}
 
+	sf::Vector2f centerOfScreen(mWindow.getSize().x / 2.f, mWindow.getSize().y / 2.f);
+
 	mFpsText.setFont(mFontHolder.get(Fonts::MiniSquare));
 	mFpsText.setString("Texto");
 	mFpsText.setScale(0.8f, 0.8f);
 
-	sf::Vector2f centerOfScreen(mWindow.getSize().x / 2.f, mWindow.getSize().y / 2.f);
+	mPlayer.setTexture(mTextureHolder.get(Textures::Airplane));
 	mPlayer.setPosition(centerOfScreen);
 	mPlayer.setScale(2.f, 2.f);
 }
@@ -112,7 +115,7 @@ void Game::update(sf::Time deltaTime)
 
 void Game::render()
 {
-	mWindow.clear(sf::Color::Cyan);
+	mWindow.clear(sf::Color::Black);
 	mWindow.draw(mPlayer);
 	mWindow.draw(mFpsText);
 	mWindow.display();

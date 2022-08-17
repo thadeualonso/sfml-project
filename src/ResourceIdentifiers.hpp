@@ -10,8 +10,8 @@ namespace Textures
 {
 	enum ID
 	{
-		Eagle,
-		Raptor,
+		PlayerShip,
+		EnemyShip,
 		Airplane,
 		Landscape,
 		Missile

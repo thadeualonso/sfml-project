@@ -8,8 +8,8 @@ class Aircraft : public Entity
 public:
 	enum Type
 	{
-		Eagle,
-		Raptor
+		Player,
+		Enemy
 	};
 
 	explicit Aircraft(Type type, const TextureHolder& textures);
