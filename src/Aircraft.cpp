@@ -1,11 +1,32 @@
 #include "Aircraft.h"
-#include "ResourceIdentifiers.hpp"
-#include <iostream>
+#include "ResourceHolder.hpp"
 
-Aircraft::Aircraft(Type type) :
-	mType(type)
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+
+Textures::ID Aircraft::toTextureID(Aircraft::Type type)
 {
-	std::cout << mType << std::endl;
+	Textures::ID textureType;
+	switch (type)
+	{
+		case Aircraft::Eagle:
+			textureType = Textures::Eagle;
+			break;
+		case Aircraft::Raptor:
+			textureType = Textures::Raptor;
+			break;
+		default:
+			break;
+	}
+	return textureType;
+}
+
+Aircraft::Aircraft(Type type, const TextureHolder& textures) :
+	mType(type),
+	mSprite(textures.get(toTextureID(type)))
+{
+	sf::FloatRect bounds = mSprite.getLocalBounds();
+	mSprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
 }
 
 void Aircraft::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const

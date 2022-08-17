@@ -1,29 +1,33 @@
 #pragma once
+#include "SFML/Graphics.hpp"
 
 namespace sf
 {
-class Texture;
+	class Texture;
 }
 
 namespace Textures
 {
-enum ID
-{
-	Airplane,
-	Landscape,
-	Missile
-};
+	enum ID
+	{
+		Eagle,
+		Raptor,
+		Airplane,
+		Landscape,
+		Missile
+	};
 }
 
 namespace Fonts
 {
-enum ID
-{
-	MiniSquare
-};
+	enum ID
+	{
+		MiniSquare
+	};
 }
 
 template <typename Resource, typename Identifier>
 class ResourceHolder;
 
 typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
+typedef ResourceHolder<sf::Font, Fonts::ID> FontHolder;

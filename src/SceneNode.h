@@ -12,10 +12,10 @@ private:
 
 public:
 	SceneNode();
-	void attachChild(Ptr childe);
+	void attachChild(Ptr child);
 	Ptr detachChild(const SceneNode& node);
 
 private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-	virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+	virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const; // Only draws the current object, not its children
 };

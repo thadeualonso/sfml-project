@@ -2,7 +2,7 @@
 
 Game::Game() :
 	mWindow(sf::VideoMode(640, 480), "SFML Application"),
-	mPlayer(),
+	mPlayer(Aircraft::Eagle, mTextureHolder),
 	mFpsText(),
 	mTextureHolder(),
 	mFontHolder()
@@ -25,7 +25,6 @@ Game::Game() :
 	mFpsText.setScale(0.8f, 0.8f);
 
 	sf::Vector2f centerOfScreen(mWindow.getSize().x / 2.f, mWindow.getSize().y / 2.f);
-	mPlayer.setTexture(mTextureHolder.get(Textures::Airplane));
 	mPlayer.setPosition(centerOfScreen);
 	mPlayer.setScale(2.f, 2.f);
 }

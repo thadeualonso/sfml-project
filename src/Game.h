@@ -2,6 +2,7 @@
 #include "ResourceHolder.hpp"
 #include "ResourceIdentifiers.hpp"
 #include "SFML/Graphics.hpp"
+#include "Aircraft.h"
 #include <iostream>
 
 class Game
@@ -18,10 +19,10 @@ private:
 
 private:
 	sf::RenderWindow mWindow;
-	sf::Sprite mPlayer;
+	Aircraft mPlayer;
 	sf::Text mFpsText;
 	TextureHolder mTextureHolder;
-	ResourceHolder<sf::Font, Fonts::ID> mFontHolder;
+	FontHolder mFontHolder;
 	bool mIsMovingUp = false;
 	bool mIsMovingDown = false;
 	bool mIsMovingRight = false;
