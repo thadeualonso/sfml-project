@@ -1,18 +1,13 @@
 #pragma once
-#include "ResourceHolder.hpp"
-#include "ResourceIdentifiers.hpp"
-#include "SFML/Graphics.hpp"
-#include "Aircraft.h"
 #include <iostream>
+#include <SFML/Graphics.hpp>
+#include "World.h"
 
 class Game
 {
 private:
 	sf::RenderWindow mWindow;
-	sf::Sprite mPlayer;
-	sf::Text mFpsText;
-	TextureHolder mTextureHolder;
-	FontHolder mFontHolder;
+	World mWorld;
 	bool mIsMovingUp = false;
 	bool mIsMovingDown = false;
 	bool mIsMovingRight = false;

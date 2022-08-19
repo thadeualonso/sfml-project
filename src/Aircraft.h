@@ -1,7 +1,7 @@
 #pragma once
-#include "ResourceIdentifiers.hpp"
-#include "Entity.h"
 #include <SFML/Graphics/Sprite.hpp>
+#include "Entity.h"
+#include "ResourceIdentifiers.hpp"
 
 class Aircraft : public Entity
 {

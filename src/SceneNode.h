@@ -1,5 +1,5 @@
 #pragma once
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
 
 class SceneNode : public sf::Transformable, public sf::Drawable, private sf::NonCopyable
 {

@@ -1,10 +1,11 @@
 #pragma once
+#include <array>
+#include <SFML/Graphics/RenderWindow.hpp>
 #include "ResourceHolder.hpp"
 #include "ResourceIdentifiers.hpp"
 #include "SceneNode.h"
 #include "Aircraft.h"
 #include "SpriteNode.h"
-#include <array>
 
 class World : public sf::NonCopyable
 {
@@ -24,7 +25,7 @@ private:
 	TextureHolder mTextureHolder;
 	SceneNode mSceneGraph;
 	std::array<SceneNode*, LayerCount> mSceneLayers;
-	float mScrollSpeed;
+	float mScrollSpeed = 2.f;
 	Aircraft* mPlayerAircraft;
 
 public:

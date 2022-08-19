@@ -1,6 +1,6 @@
 #pragma once
-#include "SceneNode.h"
 #include <SFML/Graphics.hpp>
+#include "SceneNode.h"
 
 class SpriteNode : public SceneNode
 {
