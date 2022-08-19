@@ -5,6 +5,10 @@ World::World(sf::RenderWindow& window)
 	mWorldView(window.getDefaultView()),
 	mWorldBounds(sf::FloatRect(0.f, 0.f, mWindow.getSize().x, 2000.f)),
 	mSpawnPosition(mWorldView.getSize().x / 2.f, mWorldBounds.height - mWorldView.getSize().y),
+	mTextureHolder(),
+	mSceneGraph(),
+	mSceneLayers(),
+	mScrollSpeed(-50.f),
 	mPlayerAircraft(nullptr)
 {
 	loadTextures();
@@ -38,7 +42,7 @@ void World::draw()
 void World::loadTextures()
 {
 	mTextureHolder.load(Textures::PlayerShip, "content/textures/ship_0010.png");
-	mTextureHolder.load(Textures::Landscape, "content/textures/tiles_packed.png");
+	mTextureHolder.load(Textures::Landscape, "content/textures/tile_desert.png");
 }
 void World::buildScene()
 {
@@ -56,12 +60,14 @@ void World::buildScene()
 
 	std::unique_ptr<SpriteNode> backgroundSprite = std::make_unique<SpriteNode>(landscapeTexture, textureRect);
 	backgroundSprite->setPosition(mWorldBounds.left, mWorldBounds.top);
+	backgroundSprite->setScale(2.f, 2.f);
 	mSceneLayers[Background]->attachChild(std::move(backgroundSprite));
 
 	std::unique_ptr<Aircraft> leader = std::make_unique<Aircraft>(Aircraft::Player, mTextureHolder);
 	mPlayerAircraft = leader.get();
 	mPlayerAircraft->setPosition(mSpawnPosition);
 	mPlayerAircraft->setVelocity(40.f, mScrollSpeed);
+	mPlayerAircraft->setScale(2.f, 2.f);
 	mSceneLayers[Air]->attachChild(std::move(leader));
 
 	std::unique_ptr<Aircraft> leftEscort = std::make_unique<Aircraft>(Aircraft::Player, mTextureHolder);
